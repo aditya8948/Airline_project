@@ -2,25 +2,25 @@ const express = require('express');
 
 const router = express.Router();
 
-const { cityController } = require('../../controllers');
+const { CityController } = require('../../controllers');
 
 // Post /api/v1/city/
 
 router.post('/',
-        cityController.createCity
+        CityController.createCity
 );
 
 
 // delete /api/v1/city/:id
 
 router.delete('/:id',
-        cityController.deleteCity
+        CityController.deleteCity
 );
 
 // update /api/v1/city/id
 
 router.patch('/:id' , 
-        cityController.updateCity
+        CityController.updateCity
 );
 
 

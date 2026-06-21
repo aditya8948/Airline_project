@@ -5,4 +5,5 @@ notes.txt
 ormNote.txt
 config/config.json
 interview question.txt
-*.swp
+myNotes.txt
+.swp
