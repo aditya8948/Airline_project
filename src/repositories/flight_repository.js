@@ -1,6 +1,6 @@
 const crudRepository = require('./crud_repositories');
 const Sequelize = require('sequelize')
-const{Flight,Airplane,Airport} = require('../models');
+const{Flight,Airplane,Airport,City} = require('../models');
 
 class FlightRepository extends crudRepository {
     constructor(){
@@ -25,7 +25,13 @@ class FlightRepository extends crudRepository {
                     Sequelize.col("Flight.departureAirportId"),
                     "=",
                     Sequelize.col("departure_airport.code")
-                )
+                ),
+                // nested join to city
+                include: [{
+                    model: City,
+                    as: 'city',
+                    required: true
+                }]
                 },
                  {
                 model: Airport,
@@ -35,7 +41,12 @@ class FlightRepository extends crudRepository {
                     Sequelize.col("Flight.arrivalAirportId"),
                     "=",
                     Sequelize.col("arrival_airport.code")
-                )
+                ),
+                 include: [{
+                    model: City,
+                    as: 'city',
+                    required: true
+                }]
                 }
             ]
         })
