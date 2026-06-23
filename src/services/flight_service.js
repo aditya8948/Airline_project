@@ -58,16 +58,18 @@ async function getAllFlights(query){
         };
     }
 
-   if (query.sort) {
-    const params = query.sort.split(',');
-    const sortFilters = params.map((param) => param.split('_'));
-    sortFilter = sortFilters;
+    let sortFilter;
+    if (query.sort) {
+        const params = query.sort.split(',');
+        const sortFilters = params.map((param) => param.split('_'));
+        sortFilter = sortFilters;
     }
 
     try {
-        const flights = await flightRepository.getAllFlights(customFilter,sortFilter);
+        const flights = await flightRepository.getAllFlights(customFilter, sortFilter);
         return flights;
     } catch (error) {
+        console.error('flightService.getAllFlights error:', error);
         throw new AppError('cannot fetch data of all the flights', StatusCodes.INTERNAL_SERVER_ERROR)
     }
 }
