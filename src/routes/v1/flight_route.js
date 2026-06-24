@@ -23,6 +23,11 @@ router.get('/:id',
     FlightController.getFlight
 );
 
+//api/v1/flight/:id/seats PATCH
+router.patch('/:id/seats',
+    FlightController.updateSeats
+);
+
 
 
 module.exports = router;
